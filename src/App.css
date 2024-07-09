@@ -1,0 +1,59 @@
+body{
+  background-color: rgba(255, 86, 86, 0.15)
+}
+
+.App {
+  text-align: center;
+}
+
+#title{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: rgba(128, 38, 38, 0.15);
+  font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+  -webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+#input_container{
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+#textInput{
+  background-color: rgba(231, 153, 153, 0.15);
+  margin-bottom: 7%;
+}
+
+#list_container{
+  text-align: left;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.list-group-item {
+  background-color: rgba(233, 165, 165, 0.15); 
+  transition: background-color 0.3s;
+}
+
+.list-group-item.completed {
+  color: #6c757d; /* Fade */
+  background-color: rgba(104, 75, 75, 0.15); 
+  text-decoration: line-through;
+}
+
+
+.form-check-input {
+  margin-right: 50px;
+}
+
+.list-group-item .form-check-label {
+  margin-left: 10px; 
+}
+
+.completed .form-check-label {
+  text-decoration: line-through;
+}
