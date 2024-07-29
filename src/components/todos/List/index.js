@@ -43,7 +43,7 @@ function List({ todos, setTodos }) {
                   {todo}
                 </label>
               </div>
-              <IconButton aria-label="delete" size="large" onClick={() => deleteTodo(i)}>
+              <IconButton aria-label="delete" size="large" onClick={() => deleteTodo(i)} color='secondary'>
                 <DeleteIcon />
               </IconButton>
             </li>
