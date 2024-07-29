@@ -1,40 +1,43 @@
-import {useState} from 'react' 
+import React, { useState } from 'react';
+import { addItem } from '../../../api';  // API fonksiyonlarınızın bulunduğu dosyayı import edin
 
-const initialFormState = {todo: ""}
+const initialFormState = { description: "", completed: false };
 
-function Form( {addTodos, todos} ) {
-    const [form,setForm] = useState(initialFormState)
+function Form({ addTodo }) {
+    const [form, setForm] = useState(initialFormState);
 
     const onChangeSubmit = (e) => {
-        setForm({[e.target.name]: e.target.value})
+        setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+        if (form.description === "") { return false; }
 
-        if (form.todo === ""){return false;}
-        
-        addTodos([... todos, form.todo])
-        console.log(form.todo);
-        setForm(initialFormState)
-    }
+        try {
+            const response = await addItem(form);
+            addTodo(response.data);
+        } catch (error) {
+            console.error("There was an error adding the item!", error);
+        }
+        setForm(initialFormState);
+    };
 
     return (
         <form onSubmit={onSubmit}>
             <div id='input_container'>
-            <input 
-                name='todo'
-                className="form-control form-control-lg" 
-                placeholder="What needs to be done?" 
-                aria-label=".form-control-lg example" 
-                id='textInput'
-                value={form.todo}
-                onChange={onChangeSubmit}
-                ></input>
+                <input
+                    name='description'
+                    className="form-control form-control-lg"
+                    placeholder="What needs to be done?"
+                    aria-label=".form-control-lg example"
+                    id='textInput'
+                    value={form.description}
+                    onChange={onChangeSubmit}
+                />
             </div>
         </form>
-  )
+    );
 }
 
-export default Form
-
+export default Form;

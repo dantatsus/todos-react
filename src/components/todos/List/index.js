@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { updateItem, deleteItem } from '../../../api';  // API fonksiyonlarınızın bulunduğu dosyayı import edin
 
-function List({ todos, setTodos }) {
-  const [completedTodos, setCompletedTodos] = useState(new Set());
+function List({ todos, updateTodo, deleteTodo }) {
+  const toggleComplete = async (todo) => {
+    const updatedTodo = { ...todo, completed: !todo.completed };
 
-  const toggleComplete = (index) => {
-    const newCompletedTodos = new Set(completedTodos);
-    if (newCompletedTodos.has(index)) {
-      newCompletedTodos.delete(index);
-    } else {
-      newCompletedTodos.add(index);
+    try {
+      const response = await updateItem(todo.id, updatedTodo);
+      updateTodo(response.data);
+    } catch (error) {
+      console.error("There was an error updating the item!", error);
     }
-    setCompletedTodos(newCompletedTodos);
   };
 
-  const deleteTodo = (index) => {
-    const newTodos = todos.filter((_, i) => i !== index);
-    setTodos(newTodos);
-    const newCompletedTodos = new Set(completedTodos);
-    newCompletedTodos.delete(index);
-    setCompletedTodos(newCompletedTodos);
+  const handleDelete = async (todo) => {
+    try {
+      await deleteItem(todo.id);
+      deleteTodo(todo.id);
+    } catch (error) {
+      console.error("There was an error deleting the item!", error);
+    }
   };
 
   return (
@@ -28,22 +29,21 @@ function List({ todos, setTodos }) {
       <ul>
         {todos.map((todo, i) => {
           const id = `checkbox${i}`;
-          const isCompleted = completedTodos.has(i);
           return (
-            <li key={i} className={`list-group-item ${isCompleted ? 'completed' : ''} d-flex justify-content-between align-items-center`}>
+            <li key={todo.id} className={`list-group-item ${todo.completed ? 'completed' : ''} d-flex justify-content-between align-items-center`}>
               <div>
                 <input
                   className="form-check-input me-1"
                   type="checkbox"
                   id={id}
-                  onChange={() => toggleComplete(i)}
-                  checked={isCompleted}
+                  onChange={() => toggleComplete(todo)}
+                  checked={todo.completed}
                 />
                 <label className="form-check-label" htmlFor={id}>
-                  {todo}
+                  {todo.description}
                 </label>
               </div>
-              <IconButton aria-label="delete" size="large" onClick={() => deleteTodo(i)} color='secondary'>
+              <IconButton aria-label="delete" size="large" onClick={() => handleDelete(todo)} color='secondary'>
                 <DeleteIcon />
               </IconButton>
             </li>
