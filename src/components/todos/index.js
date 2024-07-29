@@ -8,6 +8,7 @@ function Todos() {
     useEffect(() => {
         console.log(todos)
     }, [todos])
+    
   return (
     <div>
       <h1 id='title'> todos.</h1>
@@ -18,3 +19,4 @@ function Todos() {
 }
 
 export default Todos
+
