@@ -13,7 +13,7 @@ function Todos() {
     <div>
       <h1 id='title'> todos.</h1>
       <Form addTodos={setTodos} todos={todos} />
-      <List todos={todos} />
+      <List todos={todos} setTodos={setTodos} />
     </div>
   )
 }
