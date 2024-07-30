@@ -14,13 +14,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme({
     palette:{
         primary: {
-            main: '#222', // Buton rengi için primary rengi belirleyelim
+            main: '#222',
         },
         secondary:{
             main:'#e79999'
         },
         background: {
-            default: '#e8dfdf', // Arka plan rengi
+            default: '#e8dfdf',
         },
     }
 });

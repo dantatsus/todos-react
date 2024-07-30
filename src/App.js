@@ -6,6 +6,8 @@ import SignIn from './components/todos/Sign-In/SignIn';
 function App() {
   return (
     <div className="App">
+      {/* <Todos /> */}
+      {/* <SignUp /> */}
       <SignIn />
     </div>
   );
