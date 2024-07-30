@@ -24,6 +24,8 @@ function List({ todos, updateTodo, deleteTodo }) {
     }
   };
 
+  console.log(todos)
+
   return (
     <div id='list_container' className='list-group'>
       <ul>
