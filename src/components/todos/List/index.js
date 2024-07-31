@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { updateItem, deleteItem } from '../../../api';  // API fonksiyonlarınızın bulunduğu dosyayı import edin
+import { updateItem, deleteItem } from '../../../api';
 
 function List({ todos, updateTodo, deleteTodo }) {
   const toggleComplete = async (todo) => {

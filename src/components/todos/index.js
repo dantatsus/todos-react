@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Form from './Form'
 import List from './List'
-import { getAllItems } from '../../api'  // API fonksiyonlarınızın bulunduğu dosyayı import edin
+import { getAllItems } from '../../api'
 
 function Todos() {
     const [todos, setTodos] = useState([]);

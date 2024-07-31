@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addItem } from '../../../api';  // API fonksiyonlarınızın bulunduğu dosyayı import edin
+import { addItem } from '../../../api'; 
 
 const initialFormState = { description: "", completed: false };
 
